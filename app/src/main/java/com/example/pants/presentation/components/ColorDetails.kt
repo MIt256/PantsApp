@@ -1,6 +1,7 @@
 package com.example.pants.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,6 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -33,17 +36,21 @@ internal fun ColorDetails(modifier: Modifier, color: Color) {
 
 @Composable
 internal fun DataPointPresenter(title: String, data: String) {
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text = title
-        )
-        Text(
-            text = data,
-            style = TextStyle(
-                color = Color.Black,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Bold
-            ),
-        )
+    Box(modifier= Modifier.semantics {
+        contentDescription = "$title $data"
+    }) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                text = title
+            )
+            Text(
+                text = data,
+                style = TextStyle(
+                    color = Color.Black,
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold
+                ),
+            )
+        }
     }
 }
