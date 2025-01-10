@@ -21,19 +21,18 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.pants.presentation.components.anim.animatedGradientTransition
 
 @Composable
 internal fun ColorPreview(
-    modifier: Modifier = Modifier,
-    color: Color,
-    animatedColor: Color,
-    animatedGradient: Brush,
+      selectedColor: Color,
 ) {
     Column(
-        modifier = modifier,
+
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
+        val (animatedColor, animatedGradient) = animatedGradientTransition(selectedColor)
         ColorDetails(Modifier.weight(1f), animatedColor)
         ColorBox(animatedGradient)
     }
@@ -60,8 +59,6 @@ private fun ColorBox(animatedGradient: Brush) {
 @Composable
 fun ColorPreviewPreview(){
     ColorPreview(
-        color = Color.Yellow,
-        animatedColor = Color.Yellow,
-        animatedGradient = Brush.linearGradient(0f to Color.Yellow,  0.5f to Color.Green,  1f to Color.Blue),
+        selectedColor = Color.Yellow,
     )
 }

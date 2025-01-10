@@ -12,7 +12,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.pants.domain.model.ColorModel
-import com.example.pants.presentation.components.anim.animatedGradientTransition
 import com.example.pants.utils.hue
 
 @Composable
@@ -21,8 +20,6 @@ internal fun PickerContent(
     onHueChange: (Float) -> Unit,
     colors: List<ColorModel>,
 ) {
-    val (animatedColor, animatedGradient) = animatedGradientTransition(selectedColor)
-
     Column(
         modifier = Modifier.width(IntrinsicSize.Min),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -32,10 +29,8 @@ internal fun PickerContent(
             modifier = Modifier.fillMaxWidth(),
             colors = colors,
             selectedColor = selectedColor,
-            animatedColor = animatedColor,
-            animatedGradient = animatedGradient,
         )
-        HuePicker(hue = selectedColor.hue, animatedColor = animatedColor, onHueChange = onHueChange)
+        HuePicker(hue = selectedColor.hue, onHueChange = onHueChange)
     }
 }
 

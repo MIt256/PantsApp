@@ -20,15 +20,13 @@ import com.example.pants.domain.model.ColorModel
 
 @Composable
 internal fun ColorBoardPreview(
-    modifier: Modifier = Modifier,
+    modifier: Modifier,
     colors: List<ColorModel>,
 ) {
     Box(
         modifier = modifier.padding(vertical = 8.dp)
     ) {
-        colors.forEach {
-            DisplayColorFromBoard(colors)
-        }
+        DisplayColorFromBoard(colors)
     }
 }
 
@@ -66,7 +64,7 @@ private fun BorderedBox(color: ColorModel) {
                     .size(size)
                     .clip(RoundedCornerShape(12.dp)),
                 color = colorToDraw,
-            ) { }
+            ) {}
         }
     }
 }
