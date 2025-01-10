@@ -68,6 +68,10 @@ dependencies {
     implementation(libs.kotlinx.coroutine)
     implementation(libs.kotlinx.collection)
     implementation(libs.koin.android)
+    testImplementation(libs.testng)
+    testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    androidTestImplementation(libs.mockk.android)
 
     debugImplementation(libs.ui.tooling.preview)
 }
