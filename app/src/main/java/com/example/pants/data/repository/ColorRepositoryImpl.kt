@@ -11,17 +11,12 @@ class ColorRepositoryImpl(
 ) : ColorRepository {
 
     override suspend fun getRandomColors(count: Int): Result<Set<ColorModel>> = runCatching {
-        val colorList = mutableListOf<ColorModel>()
-
+        val colorList = mutableSetOf<ColorModel>()
         while (colorList.size < count) {
             val color = apiService.getColor(generateRandomColor()).toColorModel()
-            val doesntContainCommon = color.name.lowercase(Locale.getDefault()) !in COMMON_USE_NAMES
-            val isDistinct = color !in colorList
-            if (doesntContainCommon && isDistinct) {
-                colorList.add(color)
-            }
+            if (color.name.lowercase(Locale.getDefault()) !in COMMON_USE_NAMES) colorList.add(color)
         }
-        colorList.toSet()
+        colorList
     }
 
     private companion object {
